@@ -1,0 +1,12 @@
+loguru
+PyMuPDF
+pandas
+typing
+pdfplumber
+pytesseract
+langchain
+langchain_groq
+pydantic
+tiktoken
+streamlit
+dotenv
