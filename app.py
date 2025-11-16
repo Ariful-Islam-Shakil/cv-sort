@@ -7,7 +7,7 @@ from root import pipeline
 st.set_page_config(page_title="CV Sorter", page_icon="🧠", layout="wide")
 st.title("🧠 Smart CV Sorting & Analysis Pipeline")
 
-RESULTS_DIR = "/Users/mdarifulislamshakil/ztrios/cv-sort/results"
+RESULTS_DIR = "./results"
 
 with st.sidebar:
     st.header("⚙️ Configuration Panel")
@@ -19,7 +19,7 @@ with st.sidebar:
         # Inputs for pipeline
         folder = st.text_input(
             "📁 Folder Path (where CV files are stored)",
-            "/Users/mdarifulislamshakil/ztrios/cv-sort/AI-Intern-9-Nov-2025"
+            "./AI-Intern-9-Nov-2025"
         )
         JDI = st.text_input("🆔 Job Description ID", "SE001")
         Department = st.text_input("🏢 Department Name", "Software_Engineering")

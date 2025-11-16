@@ -21,7 +21,7 @@ def pipeline(folder: str, JDI:str, jd: str, Department: str = "AI_ML", output_ve
             df.columns = ["Name", "Strengths", "Weaknesses", "Score"]
             total_df = pd.concat([total_df, df], ignore_index=True) 
 
-    output_path = f"/Users/mdarifulislamshakil/ztrios/cv-sort/results/sorted_cv_{Department}_{output_version}.csv"
+    output_path = f"./results/sorted_cv_{Department}_{output_version}.csv"
     total_df = total_df.sort_values(by="Score", ascending=False)
     total_df["Rank"] = range(1, len(total_df) + 1)
     total_df.to_csv(output_path, index=False)
