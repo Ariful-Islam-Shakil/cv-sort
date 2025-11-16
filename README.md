@@ -199,3 +199,98 @@ docker run --env-file .env -p 8501:8501 -v $(pwd)/data:/app/data cv-sort
 ```bash
 docker build -t cv-sort .
 ```
+# Push image to DockerHub
+
+Perfect! Let’s go step by step to **push your `cv-sort` Docker image to Docker Hub** so you can pull it anywhere.
+
+---
+
+### **1️⃣ Login to Docker Hub**
+
+```bash
+docker login
+```
+
+* Enter your Docker Hub **username** and **password**.
+* You only need to do this once per machine/session.
+
+---
+
+### **2️⃣ Tag Your Image for Docker Hub**
+
+Docker images must be tagged with your Docker Hub username. Format:
+
+```
+<dockerhub-username>/<image-name>:<tag>
+```
+
+Example:
+
+```bash
+docker tag cv-sort yourusername/cv-sort:v1
+```
+
+* `yourusername` → your Docker Hub username
+* `v1` → version tag (you can choose `latest` or `v1`)
+
+Check your tags:
+
+```bash
+docker images
+```
+
+---
+
+### **3️⃣ Push Image to Docker Hub**
+
+```bash
+docker push yourusername/cv-sort:v1
+```
+
+* This uploads the image to your Docker Hub repository.
+* You can see it in your Docker Hub account under **Repositories**.
+
+---
+
+### **4️⃣ Pull and Run Image Anywhere**
+
+On any machine with Docker:
+
+```bash
+docker pull yourusername/cv-sort:v1
+docker run --env-file .env -p 8501:8501 yourusername/cv-sort:v1
+```
+
+* Access the app at: [http://localhost:8501](http://localhost:8501)
+
+---
+
+### **5️⃣ Optional: Use `latest` tag for convenience**
+
+```bash
+docker tag cv-sort yourusername/cv-sort:latest
+docker push yourusername/cv-sort:latest
+```
+
+Then anyone can just pull:
+
+```bash
+docker pull yourusername/cv-sort
+docker run --env-file .env -p 8501:8501 yourusername/cv-sort
+```
+
+---
+
+### **6️⃣ Notes**
+
+* Make sure `.env` is **not uploaded** to Docker Hub (good security practice).
+* Update `req-lock.txt` and rebuild if dependencies change:
+
+```bash
+docker build -t cv-sort .
+docker tag cv-sort yourusername/cv-sort:v2
+docker push yourusername/cv-sort:v2
+```
+
+---
+
