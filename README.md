@@ -293,4 +293,55 @@ docker push yourusername/cv-sort:v2
 ```
 
 ---
+# Docker Compose
+
+Docker Compose allows you to define and run multi-container Docker applications.
+
+## 1. Create `docker-compose.yml`
+
+Ensure you have a `docker-compose.yml` file in your project root. Here's an example based on your project:
+
+```yaml
+version: "3.9"
+services:
+  streamlit:
+    build: .
+    image: arif72/cv-sort:v2
+    container_name: cv-sort-app
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    restart: unless-stopped
+```
+
+## 2. Build Services
+
+To build the Docker images defined in your `docker-compose.yml` (e.g., the `streamlit` service):
+
+```bash
+docker compose build
+```
+
+## 3. Run Services
+
+To run your services in detached mode (in the background):
+
+```bash
+docker compose up -d
+```
+
+This will start the `streamlit` service, making the application accessible at `http://localhost:8501`.
+
+## 4. Stop Services
+
+To stop the running services defined in your `docker-compose.yml`:
+
+```bash
+docker compose down
+```
+
+This will stop and remove the containers, networks, and volumes created by `up`.
+
+---
 
